@@ -11,10 +11,25 @@ export function EmailForm() {
     if (!email) return;
 
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsLoading(false);
-    setIsSubmitted(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('form-name', 'newsletter');
+      formData.append('email', email);
+
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+      
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting the form. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isSubmitted) {
@@ -42,33 +57,34 @@ export function EmailForm() {
         A new era of business excellence is dawning. Be among the first to witness the emergence of something extraordinary.
       </p>
       <form 
-  name="contact" 
-  className="mt-12 flex flex-col md:flex-row items-center justify-center gap-4" 
-  method="POST" 
-  data-netlify="true"
->
-  <input type="hidden" name="form-name" value="contact" />
-  <label className="sr-only" htmlFor="email">Email Address</label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    placeholder="Enter your email for exclusive updates"
-    className="px-6 py-3 rounded-full bg-gray-800 border-2 border-amber-500 text-white focus:outline-none focus:border-amber-600 w-full max-w-sm"
-    required
-    aria-required="true"
-  />
-  <button 
-    type="submit"
-    disabled={isLoading}
-    className={`px-8 py-3 bg-amber-500 hover:bg-amber-600 text-black rounded-full transition-all duration-300 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
-    aria-busy={isLoading}
-  >
-    {isLoading ? 'Joining...' : 'Join Now'}
-  </button>
-</form>
+        className="mt-12 flex flex-col md:flex-row items-center justify-center gap-4"
+        onSubmit={handleSubmit}
+        data-netlify="true"
+        name="contact"
+        method="POST"
+      >
+        <input type="hidden" name="form-name" value="newsletter" />
+        <label className="sr-only" htmlFor="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email for exclusive updates"
+          className="px-6 py-3 rounded-full bg-gray-800 border-2 border-amber-500 text-white focus:outline-none focus:border-amber-600 w-full max-w-sm"
+          required
+          aria-required="true"
+        />
+        <button 
+          type="submit"
+          disabled={isLoading}
+          className={`px-8 py-3 bg-amber-500 hover:bg-amber-600 text-black rounded-full transition-all duration-300 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
+          aria-busy={isLoading}
+        >
+          {isLoading ? 'Joining...' : 'Join Now'}
+        </button>
+      </form>
     </div>
   );
 }

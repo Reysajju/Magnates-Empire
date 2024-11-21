@@ -31,6 +31,11 @@
     <link rel="canonical" href="https://magnatesempire.com/" />
   </head>
   <body>
+    <!-- A hidden form that Netlify needs -->
+    <form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+    </form>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
