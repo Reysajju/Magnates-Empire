@@ -11,22 +11,23 @@ export function EmailForm() {
     if (!email) return;
 
     setIsLoading(true);
-    
-    try {
-      const formData = new FormData();
-      formData.append('form-name', 'newsletter');
-      formData.append('email', email);
 
-      await fetch('/', {
+    try {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
       });
-      
-      setIsSubmitted(true);
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to subscribe');
+      }
     } catch (error) {
-      console.error('Form submission error:', error);
-      alert('There was an error submitting the form. Please try again.');
+      console.error('Subscription error:', error);
+      alert('There was an error subscribing. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -59,11 +60,7 @@ export function EmailForm() {
       <form 
         className="mt-12 flex flex-col md:flex-row items-center justify-center gap-4"
         onSubmit={handleSubmit}
-        data-netlify="true"
-        name="contact"
-        method="POST"
       >
-        <input type="hidden" name="form-name" value="newsletter" />
         <label className="sr-only" htmlFor="email">Email Address</label>
         <input
           type="email"
