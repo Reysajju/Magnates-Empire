@@ -6,9 +6,9 @@ export function Footer() {
       <p>© {currentYear} Magnates Empire. All rights reserved.</p>
       <nav className="mt-4">
         <ul className="flex justify-center space-x-6 text-sm">
-          <li><a href="#" className="hover:text-amber-500 transition-colors">Privacy Policy</a></li>
-          <li><a href="#" className="hover:text-amber-500 transition-colors">Terms of Service</a></li>
-          <li><a href="#" className="hover:text-amber-500 transition-colors">Contact</a></li>
+          <li><a href="/privacy" className="hover:text-amber-500 transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" className="hover:text-amber-500 transition-colors">Terms of Service</a></li>
+          <li><a href="/contact" className="hover:text-amber-500 transition-colors">Contact</a></li>
         </ul>
       </nav>
     </footer>
