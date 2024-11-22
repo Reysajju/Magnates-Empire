@@ -5,10 +5,19 @@ export function EmailForm() {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);  // Add error state
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+
+    // Email validation regex (simple validation)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address');
+      return;
+    }
+    setError(null); // Reset error
 
     setIsLoading(true);
     
@@ -64,7 +73,9 @@ export function EmailForm() {
         method="POST"
       >
         <input type="hidden" name="form-name" value="newsletter" />
-        <label className="sr-only" htmlFor="email">Email Address</label>
+        
+        {/* Visible label for better accessibility */}
+        <label htmlFor="email" className="text-white">Email Address</label>
         <input
           type="email"
           id="email"
@@ -76,6 +87,10 @@ export function EmailForm() {
           required
           aria-required="true"
         />
+        
+        {/* Display error message if email is invalid */}
+        {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+
         <button 
           type="submit"
           disabled={isLoading}
