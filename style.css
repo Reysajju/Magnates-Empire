@@ -138,7 +138,7 @@ h1 {
 .contact {
     padding: 5rem 10%;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-                url('https://images.unsplash.com/photo-1594322436404-5a0526db4d13?auto=format&fit=crop&w=2000&q=80');
+                url('/bg.jpg');
     background-size: cover;
     background-position: center;
     color: white;
