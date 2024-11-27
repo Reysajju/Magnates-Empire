@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogCard from '../components/BlogCard.astro';
+
+const posts = [
+  {
+    title: "10 Habits of Self-Made Billionaires",
+    excerpt: "Discover the daily routines and mindset practices that set billionaires apart from the rest.",
+    date: "April 15, 2024",
+    author: "Sajjad Rasool",
+    slug: "billionaire-habits"
+  },
+  {
+    title: "The Art of Strategic Investment",
+    excerpt: "Learn how to build a robust investment portfolio that generates consistent returns.",
+    date: "April 10, 2024",
+    author: "Sajjad Rasool",
+    slug: "strategic-investment"
+  },
+  {
+    title: "Building a Business Empire from Scratch",
+    excerpt: "A comprehensive guide to starting and scaling successful businesses.",
+    date: "April 5, 2024",
+    author: "Sajjad Rasool",
+    slug: "business-empire-guide"
+  }
+];
+---
+
+<Layout title="Blog">
+  <div class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-center mb-4">Magnate Insights</h1>
+    <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+      Expert articles and analysis on wealth creation, business strategy, and financial success.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {posts.map(post => (
+        <BlogCard {...post} />
+      ))}
+    </div>
+  </div>
+</Layout>

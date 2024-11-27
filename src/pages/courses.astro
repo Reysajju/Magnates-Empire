@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CourseCard from '../components/CourseCard.astro';
+
+const courses = [
+  {
+    title: "Wealth Mastery Program",
+    description: "Comprehensive guide to building and maintaining wealth through strategic investments.",
+    price: "$997",
+    features: [
+      "12-week intensive program",
+      "Live weekly coaching calls",
+      "Investment strategy templates",
+      "Private community access",
+      "Lifetime updates"
+    ],
+    href: "/courses/wealth-mastery"
+  },
+  {
+    title: "Business Empire Blueprint",
+    description: "Learn how to build and scale successful businesses from scratch.",
+    price: "$1,497",
+    features: [
+      "8-week business intensive",
+      "Business plan templates",
+      "Marketing strategies",
+      "Funding acquisition guide",
+      "1-on-1 mentoring session"
+    ],
+    href: "/courses/business-empire"
+  },
+  {
+    title: "Financial Freedom Accelerator",
+    description: "Fast-track your journey to financial independence with proven strategies.",
+    price: "$797",
+    features: [
+      "6-week program",
+      "Passive income strategies",
+      "Tax optimization techniques",
+      "Investment portfolio review",
+      "Monthly group coaching"
+    ],
+    href: "/courses/financial-freedom"
+  }
+];
+---
+
+<Layout title="Courses">
+  <div class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-center mb-4">Premium Courses</h1>
+    <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+      Transform your financial future with our expert-led courses designed to help you build lasting wealth and success.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {courses.map(course => (
+        <CourseCard {...course} />
+      ))}
+    </div>
+  </div>
+</Layout>

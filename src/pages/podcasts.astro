@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PodcastCard from '../components/PodcastCard.astro';
+
+const podcasts = [
+  {
+    title: "Building Wealth in Uncertain Times",
+    description: "Strategies for maintaining and growing wealth during economic uncertainty.",
+    duration: "45 min",
+    date: "April 15, 2024",
+    episodeNumber: 1
+  },
+  {
+    title: "The Millionaire Mindset",
+    description: "Understanding the psychology and habits of successful entrepreneurs.",
+    duration: "38 min",
+    date: "April 8, 2024",
+    episodeNumber: 2
+  },
+  {
+    title: "Investment Strategies for 2024",
+    description: "Expert analysis of current market trends and investment opportunities.",
+    duration: "52 min",
+    date: "April 1, 2024",
+    episodeNumber: 3
+  }
+];
+---
+
+<Layout title="Podcasts">
+  <div class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-center mb-4">Magnate Empire Podcast</h1>
+    <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+      Weekly insights and strategies from industry leaders on building wealth and achieving financial success.
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      {podcasts.map(podcast => (
+        <PodcastCard {...podcast} />
+      ))}
+    </div>
+  </div>
+</Layout>

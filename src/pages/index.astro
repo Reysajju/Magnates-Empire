@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Home">
+  <div class="relative">
+    <!-- Hero Section with Parallax Effect -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-80 z-10"></div>
+        <div class="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center bg-no-repeat"></div>
+      </div>
+      
+      <div class="container mx-auto px-6 relative z-20 text-white">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Elevate Your <span class="text-gold">Financial Empire</span>
+          </h1>
+          <p class="text-xl md:text-2xl mb-12 text-gray-200">
+            Join the elite circle of financial magnates. Learn the art of wealth creation from industry leaders.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/courses" class="bg-gold text-black px-8 py-4 rounded-full font-bold hover:bg-opacity-90 transition-all transform hover:scale-105">
+              Explore Courses
+            </a>
+            <a href="/about" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white hover:text-black transition-all">
+              Learn More
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Why Choose Magnate Empire?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-6 bg-black rounded-full flex items-center justify-center">
+              <span class="text-gold text-3xl">💎</span>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Premium Education</h3>
+            <p class="text-gray-600">Expert-led courses designed for ambitious individuals seeking financial mastery.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-6 bg-black rounded-full flex items-center justify-center">
+              <span class="text-gold text-3xl">🎯</span>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Proven Strategies</h3>
+            <p class="text-gray-600">Time-tested methods for building and scaling successful business empires.</p>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 mx-auto mb-6 bg-black rounded-full flex items-center justify-center">
+              <span class="text-gold text-3xl">🌟</span>
+            </div>
+            <h3 class="text-xl font-bold mb-4">Elite Community</h3>
+            <p class="text-gray-600">Connect with like-minded individuals on the path to financial greatness.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Our Premium Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-gold text-4xl mb-6">📚</div>
+            <h3 class="text-2xl font-bold mb-4">Online Courses</h3>
+            <p class="text-gray-600 mb-6">Comprehensive courses on wealth creation, investment strategies, and business development.</p>
+            <a href="/courses" class="text-gold font-semibold hover:underline">Explore Courses →</a>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-gold text-4xl mb-6">🎙️</div>
+            <h3 class="text-2xl font-bold mb-4">Podcasts</h3>
+            <p class="text-gray-600 mb-6">Weekly insights on financial markets, business trends, and wealth-building strategies.</p>
+            <a href="/podcasts" class="text-gold font-semibold hover:underline">Listen Now →</a>
+          </div>
+          <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <div class="text-gold text-4xl mb-6">✍️</div>
+            <h3 class="text-2xl font-bold mb-4">Blog</h3>
+            <p class="text-gray-600 mb-6">Expert articles and analysis on finance, investment, and business success.</p>
+            <a href="/blog" class="text-gold font-semibold hover:underline">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-black text-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-8">Ready to Begin Your Journey?</h2>
+        <p class="text-xl mb-12 max-w-2xl mx-auto">
+          Join thousands of successful individuals who have transformed their financial future with Magnate Empire.
+        </p>
+        <a href="/contact" class="bg-gold text-black px-12 py-4 rounded-full font-bold hover:bg-opacity-90 transition-all inline-block">
+          Get Started Today
+        </a>
+      </div>
+    </section>
+  </div>
+</Layout>

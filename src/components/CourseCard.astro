@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  price: string;
+  features: string[];
+  href: string;
+}
+
+const { title, description, price, features, href } = Astro.props;
+---
+
+<div class="border rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
+  <div class="p-6">
+    <h3 class="text-2xl font-bold mb-2">{title}</h3>
+    <p class="text-gray-600 mb-4">{description}</p>
+    <p class="text-3xl font-bold text-gold mb-4">{price}</p>
+    <ul class="space-y-2 mb-6">
+      {features.map(feature => (
+        <li class="flex items-center">
+          <span class="text-gold mr-2">✓</span>
+          {feature}
+        </li>
+      ))}
+    </ul>
+    <a
+      href={href}
+      class="block w-full text-center bg-black text-white py-3 rounded-md hover:bg-opacity-90 transition-colors"
+    >
+      Enroll Now
+    </a>
+  </div>
+</div>
