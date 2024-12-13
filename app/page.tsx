@@ -11,22 +11,34 @@ import { Footer } from "@/components/sections/Footer";
 
 export default function Home() {
   const [showRegistration, setShowRegistration] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>();
+  const [selectedTools, setSelectedTools] = useState<string[]>([]);
 
   const handleGetStarted = () => {
+    setSelectedCategory(undefined);
+    setSelectedTools([]);
+    setShowRegistration(true);
+  };
+
+  const handleCategorySelection = (category: string, tools: string[]) => {
+    setSelectedCategory(category);
+    setSelectedTools(tools);
     setShowRegistration(true);
   };
 
   return (
-    <main className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <HeroSection onGetStarted={handleGetStarted} />
       <FeaturesSection />
-      <PlansSection onGetStarted={handleGetStarted} />
+      <PlansSection onGetStarted={handleCategorySelection} />
       <NewsletterSection />
       <Footer />
       <RegistrationDialog 
         open={showRegistration} 
-        onOpenChange={setShowRegistration} 
+        onOpenChange={setShowRegistration}
+        selectedCategory={selectedCategory}
+        selectedTools={selectedTools}
       />
-    </main>
+    </div>
   );
 }
