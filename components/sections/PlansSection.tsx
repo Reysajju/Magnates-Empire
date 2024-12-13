@@ -24,7 +24,7 @@ export function PlansSection({ onGetStarted }: PlansSectionProps) {
               key={category}
               name={data.name}
               description={data.description}
-              tools={data.tools}
+              tools={[...data.tools]} // Convert readonly array to mutable array
               onGetStarted={(tools) => onGetStarted(category, tools)}
             />
           ))}
