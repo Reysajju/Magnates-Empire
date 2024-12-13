@@ -3,15 +3,30 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Mail } from "lucide-react";
+import { NewsletterButtonIcon } from "@/components/ui/button-icons";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would integrate with Beehiiv API
-    setEmail("");
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Newsletter subscription failed');
+      }
+      
+      setEmail("");
+    } catch (error) {
+      console.error('Newsletter error:', error);
+    }
   };
 
   return (
@@ -33,9 +48,11 @@ export function NewsletterSection() {
               className="bg-secondary/50"
               required
             />
-            <Button type="submit" className="bg-yellow-400 text-black hover:bg-yellow-500">
-              <Mail className="w-4 h-4 mr-2" />
-              Subscribe
+            <Button 
+              type="submit" 
+              className="bg-yellow-400 text-black hover:bg-yellow-500"
+            >
+              <NewsletterButtonIcon />
             </Button>
           </form>
         </div>

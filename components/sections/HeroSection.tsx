@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { GetStartedButtonIcon } from "@/components/ui/button-icons";
 import { HERO_SLIDES } from "@/lib/constants/hero-slides";
 
 interface HeroSectionProps {
@@ -55,8 +55,7 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
           className="bg-yellow-500 hover:bg-yellow-400 text-black text-lg px-8 py-6 rounded-full
                    transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-yellow-500/50"
         >
-          Get Started Now
-          <ChevronRight className="ml-2" />
+          <GetStartedButtonIcon />
         </Button>
       </div>
     </section>
