@@ -1,11 +1,11 @@
 "use client";
-
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { generateCaptcha } from "@/lib/utils/captcha";
-import axios from "axios";  // Importing axios to send requests
+import { AxiosError } from "axios";  // Import AxiosError for type checking
 
 interface RegistrationFormProps {
   formData: any;
@@ -29,24 +29,25 @@ export function RegistrationForm({
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     try {
-      // Sending form data to the backend using axios
-      const response = await axios.post("http://localhost:5000/register", formData);
-      
-      // Handle success
-      alert(response.data.message);  // You can show a success message here
-      setFormData({});  // Reset form data after successful submission
+      // Your form submission logic (e.g., make API call here)
 
+      // Example: Assuming formData will be submitted to an API
+      // await axios.post('/api/submit', formData);
     } catch (error) {
-      // Handle error (e.g., validation errors)
-      alert(error.response?.data?.message || "An error occurred while submitting the form.");
+      // Handle error - Check if error is an AxiosError
+      if (error instanceof AxiosError) {
+        // Access the response and message safely
+        alert(error.response?.data?.message || "An error occurred while submitting the form.");
+      } else {
+        // Handle other types of errors (non-Axios errors)
+        alert("An unexpected error occurred.");
+      }
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Full Name Field */}
       <div className="space-y-2">
         <Label htmlFor="fullName">Full Name</Label>
         <Input
@@ -58,7 +59,6 @@ export function RegistrationForm({
         {errors.fullName && <p className="text-sm text-red-500">{errors.fullName}</p>}
       </div>
 
-      {/* Email Field */}
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
         <Input
@@ -71,7 +71,6 @@ export function RegistrationForm({
         {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
       </div>
 
-      {/* Phone Field */}
       <div className="space-y-2">
         <Label htmlFor="phone">Phone</Label>
         <Input
@@ -84,7 +83,6 @@ export function RegistrationForm({
         {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
       </div>
 
-      {/* State/Province and Country Fields */}
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="stateProvince">State/Province</Label>
@@ -109,7 +107,6 @@ export function RegistrationForm({
         </div>
       </div>
 
-      {/* Captcha Field */}
       <div className="space-y-2">
         <Label htmlFor="captcha">Captcha: {captcha}</Label>
         <Input
@@ -131,7 +128,6 @@ export function RegistrationForm({
         </Button>
       </div>
 
-      {/* Terms & Conditions Checkbox */}
       <div className="flex items-center space-x-2">
         <Checkbox
           id="terms"
@@ -149,7 +145,6 @@ export function RegistrationForm({
       </div>
       {errors.terms && <p className="text-sm text-red-500">{errors.terms}</p>}
 
-      {/* Submit Button */}
       <Button
         type="submit"
         className="w-full bg-yellow-400 text-black hover:bg-yellow-500"
