@@ -18,11 +18,11 @@ export function NewsletterSection() {
         },
         body: JSON.stringify({ email }),
       });
-      
+
       if (!response.ok) {
         throw new Error('Newsletter subscription failed');
       }
-      
+
       setEmail("");
     } catch (error) {
       console.error('Newsletter error:', error);
@@ -46,10 +46,11 @@ export function NewsletterSection() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="bg-secondary/50"
+              suppressHydrationWarning
               required
             />
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               className="bg-yellow-400 text-black hover:bg-yellow-500"
             >
               <NewsletterButtonIcon />
