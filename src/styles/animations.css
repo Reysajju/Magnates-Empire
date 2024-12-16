@@ -1,0 +1,51 @@
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+  }
+  100% {
+    transform: translateY(110vh) translateX(20px);
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+           drop-shadow(0 0 5px rgba(62, 184, 255, 0.8))
+           drop-shadow(0 0 10px rgba(62, 184, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9))
+           drop-shadow(0 0 10px rgba(62, 184, 255, 0.9))
+           drop-shadow(0 0 15px rgba(62, 184, 255, 0.7));
+  }
+}
+
+@keyframes festiveGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000;
+  }
+  33% {
+    box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+  }
+  66% {
+    box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  }
+}
+
+.neon-text {
+  animation: neonPulse 2s infinite;
+}
+
+.festive-border {
+  animation: festiveGlow 6s infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.snowflake {
+  position: fixed;
+  top: -10px;
+  animation: snowfall linear infinite;
+}
