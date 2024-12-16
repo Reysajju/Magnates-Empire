@@ -6,23 +6,40 @@ export default function ContactForm() {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    // For testing, log the formData
     console.log('Form submitted:', formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form 
+      onSubmit={handleSubmit} 
+      className="space-y-6" 
+      name="contact" 
+      method="POST" 
+      data-netlify="true" 
+      data-netlify-honeypot="bot-field"
+    >
+      {/* Hidden input for Netlify form identification */}
+      <input type="hidden" name="form-name" value="contact" />
+      {/* Honeypot field for spam prevention */}
+      <div hidden>
+        <label>
+          Don’t fill this out: <input name="bot-field" />
+        </label>
+      </div>
+
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
           Name
         </label>
         <input
           type="text"
+          name="name"
           required
           className="w-full px-4 py-2 bg-navy-800 border border-gray-700 rounded-lg text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
           value={formData.name}
@@ -36,6 +53,7 @@ export default function ContactForm() {
         </label>
         <input
           type="email"
+          name="email"
           required
           className="w-full px-4 py-2 bg-navy-800 border border-gray-700 rounded-lg text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
           value={formData.email}
@@ -49,6 +67,7 @@ export default function ContactForm() {
         </label>
         <input
           type="text"
+          name="subject"
           required
           className="w-full px-4 py-2 bg-navy-800 border border-gray-700 rounded-lg text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
           value={formData.subject}
@@ -61,6 +80,7 @@ export default function ContactForm() {
           Message
         </label>
         <textarea
+          name="message"
           required
           rows={6}
           className="w-full px-4 py-2 bg-navy-800 border border-gray-700 rounded-lg text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500"
@@ -76,6 +96,17 @@ export default function ContactForm() {
         <Send className="w-5 h-5 mr-2" />
         Send Message
       </button>
+
+      {/* Additional Information Section */}
+      <div className="mt-4 text-center text-sm text-gray-400">
+        For more information, email us at{' '}
+        <a 
+          href="mailto:sajjjad.rasool@gmail.com" 
+          className="text-amber-500 hover:underline"
+        >
+          sajjjad.rasool@gmail.com
+        </a>
+      </div>
     </form>
   );
 }
